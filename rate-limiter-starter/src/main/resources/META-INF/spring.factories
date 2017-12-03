@@ -1,0 +1,1 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=cn.caijiajia.ratelimiter.autoconfigure.RateLimiterAutoConfiguration
