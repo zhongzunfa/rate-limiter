@@ -1,56 +1,11 @@
 # rate-limiter
-> 基于redis限流系统
-## 使用
 
-#### 1、引入依赖
+> 限流是对系统的出入流量进行控制，防止大流量出入，导致资源不足，系统不稳定。
 
-```xml
-<dependency>
-    <groupId>cn.wukq</groupId>
-    <artifactId>rate-limiter-client</artifactId>
-    <version>1.0-SNAPSHOT</version>
-</dependency>
-
-```
-#### 2、引入applicationContext
-
-```xml
-<import resource="classpath:applicationContext-rateLimiter.xml"/>
-```
-```
-## spring-config.properties 中加入
-redis.host.user.ratelimiter=127.0.0.1
-redis.port.user.ratelimiter=6379
-redis.database.user.ratelimiter=4
-```
-
-#### 3、代码中
-
-```java
-@Resource(name = "rateLimiterRedisClient")
-private RedisClient redisClient;
-
-
-/**
-* 这个方法在取令牌过程中，如果redis挂了也算成功
-* 
-* 取令牌的数量为默认值：1
-*/
-boolean acquire = redisClient.acquire(key);
+## 描述
+本人基于redis配合lua脚本，使用了自己改进后的令牌桶算法实现的限流系统，对于该系统的设计和实现，有兴趣的可以看一下本人写的文章：[基于Redis的限流系统的设计](https://mp.weixin.qq.com/s?__biz=MzI0MTk0NTY5MA==&mid=2247483711&idx=1&sn=28780c8b26f24ac6314ff5c599bb622c&chksm=e9029c0ade75151c353cd6b720ce438b4342afd8ef3a7d03c61712554c6a000ac3646bbc3124&scene=38#wechat_redirect)
 
 
 
-/**
-* 
-* 
-* 这个方法会返回一个Token 对象，
-* Token对象有详细的描述告知取令牌的状态
-* 
-*  取令牌的数量为：tokenCount
-* 
-*/
-Token token = redisClient.acquireToken(key,tokenCount);
-
-```
 
 
