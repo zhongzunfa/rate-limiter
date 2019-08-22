@@ -26,6 +26,7 @@ import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -53,11 +54,17 @@ public class RateLimiterService implements InitializingBean {
     }
 
     public List<RateLimiterVo> getRateLimiters(String context) {
+
+        // 从数据库中取出值
         List<RateLimiterInfo> rateLimiterInfoList = rateLimiterInfoMapper.selectAll()
                 .stream()
+                // 查出所有的， 在过来出满足context相等的一条记录
                 .filter((rateLimiterInfo) -> Sets.newHashSet(rateLimiterInfo.getApps().split(",")).contains(context))
+                // 将数据转化成一个list
                 .collect(Collectors.toList());
 
+
+        // redis 相关的操作
         List<Object> rateLimiterListFromRedis = stringRedisTemplate.executePipelined((RedisCallback<Object>) connection -> {
             StringRedisConnection stringRedisConn = (StringRedisConnection) connection;
             for (RateLimiterInfo rateLimiterInfo : rateLimiterInfoList) {

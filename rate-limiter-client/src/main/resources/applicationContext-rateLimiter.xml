@@ -13,9 +13,9 @@
 
     <bean id="connectionFactory"
           class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
-          p:host-name="${rate.limiter.redis.host}"
-          p:port="${rate.limiter.redis.port}"
-          p:password="${rate.limiter.redis.pass}"
+          p:host-name="${redis.host.user.rateLimiter}"
+          p:port="${redis.port.user.rateLimiter}"
+          p:password="${redis.password.user.rateLimiter}"
           p:pool-config-ref="poolConfig"/>
 
     <bean id="stringRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
