@@ -7,7 +7,7 @@
     <groupId>cn.caijiajia</groupId>
     <artifactId>rate-limiter</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0.SNAPSHOT</version>
+    <version>1.0.0</version>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -77,12 +77,12 @@
             <dependency>
                 <groupId>cn.caijiajia</groupId>
                 <artifactId>rate-limiter-client</artifactId>
-                <version>1.0.0.SNAPSHOT</version>
+                <version>1.0.0</version>
             </dependency>
             <dependency>
                 <groupId>cn.caijiajia</groupId>
                 <artifactId>rate-limiter-autoConfigure</artifactId>
-                <version>1.0.0.SNAPSHOT</version>
+                <version>1.0.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
